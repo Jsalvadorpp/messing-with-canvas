@@ -1,12 +1,10 @@
 /* init variables */
-gameObjects = [
-	new Box(250, 50, 0, 50),
-	new Box(250, 300, 0, -50),
-	new Box(150, 0, 50, 50),
-	new Box(250, 150, 50, 50),
-	new Box(350, 75, -50, 50),
-	new Box(300, 300, 50, -50)
-];
+gameObjects = [];
+
+for (let i = 0; i <= 10; i++) {
+	let initBox = randomPosAndVelocity();
+	gameObjects.push(new Box(initBox.x, initBox.y, initBox.vx, initBox.vy));
+}
 
 /* game's logic here */
 function main(secondsPassed) {
@@ -19,4 +17,15 @@ function main(secondsPassed) {
 	for (let i = 0; i < gameObjects.length; i++) {
 		gameObjects[i].update(secondsPassed);
 	}
+}
+
+function randomPosAndVelocity() {
+	let speed = 60;
+
+	let x = Math.floor(Math.random() * window.innerWidth);
+	let y = Math.floor(Math.random() * window.innerHeight);
+	let vx = Math.random() < 0.5 ? -speed : speed;
+	let vy = Math.random() < 0.5 ? -speed : speed;
+
+	return { x, y, vx, vy };
 }
