@@ -12,14 +12,15 @@ ctx.fillRect(0, 0, window.innerWidth, window.innerHeight);
 window.requestAnimationFrame(gameLoop);
 
 //global variables
-let secondsPassed;
-let oldTimeStamp;
+let secondsPassed = 0;
+let oldTimeStamp = 0;
 let fps;
 
 function gameLoop(timeStamp) {
 	clearScreen();
+
 	//game's logic in main function
-	main();
+	main(secondsPassed);
 
 	//calculate Fps
 	calculateFPS(timeStamp);
@@ -32,6 +33,8 @@ function calculateFPS(timeStamp) {
 	// Calculate the number of seconds passed since the last frame
 	secondsPassed = (timeStamp - oldTimeStamp) / 1000;
 	oldTimeStamp = timeStamp;
+	// Move forward in time with a maximum amount
+	secondsPassed = Math.min(secondsPassed, 0.1);
 
 	// Calculate fps
 	fps = Math.round(1 / secondsPassed);

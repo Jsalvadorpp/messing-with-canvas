@@ -9,8 +9,8 @@ const addBoxOnClick = (e) => {
 let box = new Box(0, 0, 25, 25, '#a3bfd1');
 
 /* game's logic here */
-function main() {
+function main(secondsPassed) {
 	box.draw();
 
-	box.x += 1;
+	box.x += 80 * secondsPassed;
 }
