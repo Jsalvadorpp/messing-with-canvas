@@ -8,4 +8,10 @@ class GameObject {
 		this.isColliding = false;
 		this.showDirection = true;
 	}
+	get dir() {
+		return [ Math.sign(this.vx), Math.sign(this.vy) ];
+	}
+	get pos() {
+		return [ this.x, this.y ];
+	}
 }
