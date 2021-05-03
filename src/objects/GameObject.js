@@ -6,5 +6,6 @@ class GameObject {
 		this.vy = vy;
 
 		this.isColliding = false;
+		this.showDirection = true;
 	}
 }
