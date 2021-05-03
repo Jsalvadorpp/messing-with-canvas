@@ -20,7 +20,7 @@ class Box extends GameObject {
 		return [ this.x + this.width / 2, this.y + this.height / 2 ];
 	}
 	get dir() {
-		return [ Math.abs(this.vx) / this.vx, Math.abs(this.vy) / this.vy ];
+		return [ Math.sign(this.vx), Math.sign(this.vy) ];
 	}
 	draw() {
 		ctx.fillStyle = this.color;
