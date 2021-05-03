@@ -7,6 +7,7 @@ class Box extends GameObject {
 		this.height = 50;
 
 		this.color = 'blue';
+		this.collisionColor = 'red';
 	}
 	update(secondsPassed) {
 		// Move with set velocity
@@ -17,7 +18,7 @@ class Box extends GameObject {
 		return [ this.x + this.width / 2, this.y + this.height / 2 ];
 	}
 	draw() {
-		ctx.fillStyle = this.color;
+		ctx.fillStyle = this.isColliding ? this.collisionColor : this.color;
 		ctx.fillRect(this.x, this.y, this.width, this.height);
 
 		//display direction of the object
