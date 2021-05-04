@@ -5,9 +5,6 @@ class Box extends GameObject {
 		// Set default width and height
 		this.width = 50;
 		this.height = 50;
-
-		this.color = 'blue';
-		this.collisionColor = 'red';
 	}
 	update(secondsPassed) {
 		// Move with set velocity
@@ -31,4 +28,14 @@ class Box extends GameObject {
 			ctx.stroke();
 		}
 	}
+}
+
+function boxIntersect(box1, box2) {
+	//check if boxes are not colliding
+	if (box2.x > box1.x + box1.width) return false;
+	if (box1.x > box2.x + box2.width) return false;
+	if (box2.y > box1.y + box1.height) return false;
+	if (box1.y > box2.y + box2.height) return false;
+
+	return true;
 }

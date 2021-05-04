@@ -1,10 +1,16 @@
 /* init variables */
 gameObjects = [];
 
-//generate randomBoxes
-for (let i = 0; i <= 50; i++) {
+//generate random Boxes
+/* for (let i = 0; i <= 50; i++) {
 	let initBox = randomPosAndVelocity();
 	gameObjects.push(new Box(initBox.x, initBox.y, initBox.vx, initBox.vy));
+} */
+
+//generate random Circles
+for (let i = 0; i <= 50; i++) {
+	let initBox = randomPosAndVelocity();
+	gameObjects.push(new Circle(initBox.x, initBox.y, initBox.vx, initBox.vy));
 }
 
 /* game's logic here */
@@ -39,25 +45,15 @@ function detectCollisions(gameEntities) {
 		for (let j = i + 1; j < gameEntities.length; j++) {
 			obj2 = gameEntities[j];
 
-			// Compare object1 with object2
-			if (boxIntersect(obj1, obj2)) {
+			// Compare object1 with object2 , both objects are boxes
+			/* if (boxIntersect(obj1, obj2)) {
 				obj1.isColliding = true;
 				obj2.isColliding = true;
-			}
+			} */
 		}
 	}
 
 	return gameEntities;
-}
-
-function boxIntersect(box1, box2) {
-	//check if boxes are not colliding
-	if (box2.x > box1.x + box1.width) return false;
-	if (box1.x > box2.x + box2.width) return false;
-	if (box2.y > box1.y + box1.height) return false;
-	if (box1.y > box2.y + box2.height) return false;
-
-	return true;
 }
 
 function randomPosAndVelocity() {

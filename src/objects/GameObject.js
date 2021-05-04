@@ -5,6 +5,9 @@ class GameObject {
 		this.vx = vx;
 		this.vy = vy;
 
+		this.color = 'blue';
+		this.collisionColor = 'red';
+
 		this.isColliding = false;
 		this.showDirection = true;
 	}
