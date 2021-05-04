@@ -30,3 +30,14 @@ class Circle extends GameObject {
 		}
 	}
 }
+
+function circleIntersect(c1, c2) {
+	//circle1 , circle2
+
+	// Calculate the distance between the two circles (distance between two points)
+	let squareDistance = Math.sqrt((c1.x - c2.x) * (c1.x - c2.x) + (c1.y - c2.y) * (c1.y - c2.y));
+
+	// When the distance is smaller or equal to the sum
+	// of the two radius, the circles touch or overlap
+	return squareDistance <= c1.radius + c2.radius;
+}

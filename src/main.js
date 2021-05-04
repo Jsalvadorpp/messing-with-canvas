@@ -46,10 +46,16 @@ function detectCollisions(gameEntities) {
 			obj2 = gameEntities[j];
 
 			// Compare object1 with object2 , both objects are boxes
-			/* if (boxIntersect(obj1, obj2)) {
+			/* 	if (boxIntersect(obj1, obj2)) {
 				obj1.isColliding = true;
 				obj2.isColliding = true;
 			} */
+
+			// Compare object1 with object2 , both objects are circles
+			if (circleIntersect(obj1, obj2)) {
+				obj1.isColliding = true;
+				obj2.isColliding = true;
+			}
 		}
 	}
 
