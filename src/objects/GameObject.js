@@ -10,6 +10,7 @@ class GameObject {
 
 		this.isColliding = false;
 		this.showDirection = true;
+		this.isAffectedByGravity = true;
 	}
 	get dir() {
 		return [ Math.sign(this.vx), Math.sign(this.vy) ];

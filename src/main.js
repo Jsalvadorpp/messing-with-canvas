@@ -1,5 +1,6 @@
 /* init variables */
 gameObjects = [];
+const gravity = 20;
 
 //generate random Boxes
 /* for (let i = 0; i <= 50; i++) {

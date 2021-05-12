@@ -9,6 +9,11 @@ class Circle extends GameObject {
 		this.radius = 25;
 	}
 	update(secondsPassed) {
+		if (this.isAffectedByGravity) {
+			// Apply acceleration
+			this.vy += gravity * secondsPassed;
+		}
+
 		// Move with set velocity
 		this.x += this.vx * secondsPassed;
 		this.y += this.vy * secondsPassed;
