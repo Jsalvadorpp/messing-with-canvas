@@ -21,11 +21,16 @@ class Circle extends GameObject {
 
 		//display direction of the object
 		if (this.showDirection) {
+			// Calculate the angle (vy before vx)
+			let radians = Math.atan2(this.vy, this.vx);
+
 			ctx.beginPath();
 			ctx.strokeStyle = 'white';
 			ctx.lineWidth = 2;
 			ctx.moveTo(this.x, this.y);
-			ctx.lineTo(this.x + 25 * this.dir[0], this.y + 25 * this.dir[1]);
+			//ctx.lineTo(this.x + 25 * this.dir[0], this.y + 25 * this.dir[1]);
+			ctx.lineTo(this.x + 35 * Math.cos(radians), this.y + 35 * Math.sin(radians));
+
 			ctx.stroke();
 		}
 	}
