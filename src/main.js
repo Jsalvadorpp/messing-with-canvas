@@ -1,6 +1,6 @@
 /* init variables */
 gameObjects = [];
-const gravity = 20;
+const gravity = 200;
 
 //generate random Boxes
 /* for (let i = 0; i <= 50; i++) {
@@ -9,7 +9,7 @@ const gravity = 20;
 } */
 
 //generate random Circles
-for (let i = 0; i <= 50; i++) {
+for (let i = 0; i <= 20; i++) {
 	let initBox = randomPosAndVelocity();
 	gameObjects.push(new Circle(initBox.x, initBox.y, initBox.vx, initBox.vy));
 }
@@ -18,6 +18,7 @@ for (let i = 0; i <= 50; i++) {
 function main(secondsPassed) {
 	//calculate game objects
 	gameObjects = detectCollisions(gameObjects);
+	gameObjects = detectEdgeCollisions(gameObjects);
 
 	// Draw each object
 	for (let i = 0; i < gameObjects.length; i++) {
@@ -28,6 +29,48 @@ function main(secondsPassed) {
 	for (let i = 0; i < gameObjects.length; i++) {
 		gameObjects[i].update(secondsPassed);
 	}
+}
+
+function detectEdgeCollisions(gameEntities) {
+	// Note: this detection is for circle objects
+	let obj;
+
+	// window sizes
+	let ctxWidth = ctx.canvas.width;
+	let ctxHeight = ctx.canvas.height;
+
+	// Set a restitution, a lower value will lose more energy when colliding
+	const restitution = 0.6;
+
+	for (let i = 0; i < gameEntities.length; i++) {
+		obj = gameEntities[i];
+
+		if (obj.x < obj.radius) {
+			// check left edge
+			obj.vx = -obj.vx * restitution;
+			obj.x = obj.radius;
+			obj.isColliding = true;
+		} else if (obj.x + obj.radius > ctxWidth) {
+			// check right edge
+			obj.vx = -obj.vx * restitution;
+			obj.x = ctxWidth - obj.radius;
+			obj.isColliding = true;
+		}
+
+		if (obj.y < obj.radius) {
+			// check top edge
+			obj.vy = -obj.vy * restitution;
+			obj.y = obj.radius;
+			obj.isColliding = true;
+		} else if (obj.y + obj.radius > ctxHeight) {
+			//check bottom edge
+			obj.vy = -obj.vy * restitution;
+			obj.y = ctxHeight - obj.radius;
+			obj.isColliding = true;
+		}
+	}
+
+	return gameEntities;
 }
 
 function detectCollisions(gameEntities) {
